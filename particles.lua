@@ -16,10 +16,10 @@ local function getRandomizedPosition(xOffset, yOffset)
 	yOffset = yOffset or 0
 
 	return {math.random(0 + xOffset, sprite.width - xOffset), 
-			math.random(0 + yOffset, sprite.height- yOffset)}
+			math.random(0 + yOffset, sprite.height - yOffset)}
 end
 
--- NOTE: particles can currently be spawn on top of each other
+-- NOTE: particles can currently spawn on top of each other
 local function createParticles(data)
 	if not data.particle_file or data.particle_file == "" then
 		return app.alert("No particle file was chosen or file is broken.")
@@ -31,7 +31,7 @@ local function createParticles(data)
 
 	local particleImage = Image{fromFile=data.particle_file}
 
-	-- check again if for some reason particleImage could not be created or is invalide due to an error of the particle file
+	-- check again if for some reason particleImage could not be created or is invalid due to an error of the particle file
 	-- no need for an app alert since aseprite will tell the user automatically
 	if not particleImage then
 		return
@@ -52,15 +52,15 @@ local function createParticles(data)
 
 	-- create new cel and center it correctly
 	local cel = sprite:newCel(newLayer, 1, outputImage) 
-	local center = Point(sprite.width/2 - cel.bounds.width/2,
-						 sprite.height/2 - cel.bounds.height/2)
+	local center = Point(sprite.width / 2 - cel.bounds.width / 2,
+						 sprite.height / 2 - cel.bounds.height / 2)
 			 
 	cel.position = center
 end
 
 local dialog = Dialog("Particle Effect")
 dialog 
-	:file{id="particle_file", label="Choose particle file", open=true, filetypes={"aseprite", "png", "jpeg", "jpg"}}
+	:file{id="particle_file", label="Choose particle file", filetypes={"aseprite", "png", "jpeg", "jpg"}}
 	:number{id="particle_count", label="Particle count", text="10"}
 	:button{text="Start particle effect", onclick=function() createParticles(dialog.data) end}
 	:show{wait=false}

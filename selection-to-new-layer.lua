@@ -1,6 +1,6 @@
 -----------------------------
 -- By dolix
--- Selection will be cut from the current layer and split into their own new layer.
+-- Selection will be cut from the current layer and split into its own new layer.
 -----------------------------
 
 local sprite = app.activeSprite
